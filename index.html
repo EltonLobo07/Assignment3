@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Assignment 3</title>
+	<style type="text/css">
+		td{
+			border:1px solid black;
+			text-align: center;
+		}
+	</style>
+	<script type="text/javascript">
+		var images=["image1.jpg","image2.jpg","image3.jpg","image4.jpg","image5.jpg"],i=0;
+		function changeImage(){
+			var z=document.getElementById("num").value;
+			document.getElementById("imgscreen").src=images[i];
+			if (i<images.length-1 && z>0){
+				i++;
+			}
+			else
+			{
+				i=0;
+			}
+			setTimeout("changeImage()",z);
+		}
+		function calcfunc(operation) {
+			var a=parseInt(document.getElementById("val1").value);
+		    var b=parseInt(document.getElementById("val2").value);
+		    if (Number.isFinite(a) && Number.isFinite(b))
+		    {
+		    	if(operation=="+")
+		    	{
+		    		document.getElementById("op").value=a+b;
+		    	}
+		    	else if(operation=="-")
+		    	{
+		    		document.getElementById("op").value=a-b;
+		    	}
+		    	else if(operation=="*")
+		    	{
+		    		document.getElementById("op").value=a*b;
+		    	}
+		    	else
+		    	{
+		    		document.getElementById("op").value=a/b;	
+		    	}
+		    }
+		    else
+		    {
+		    	document.getElementById("op").value="INVALID";
+		    }
+		}
+		function verification(){
+			var x=document.getElementById("emailtext").value
+			var y=/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+			if(x.match(y)){
+				document.getElementById("emailtext").style.backgroundColor="green";
+			}	
+			else{
+				document.getElementById("emailtext").style.backgroundColor="red";
+			}
+		}
+	</script>
+</head>
+<body>
+	<table>
+		<tr>
+			<td>
+				Time: <input type="number" id="num" value="1000">
+		        <input type="button" value="Submit" onclick="changeImage()">
+			</td>
+			<td>
+				<img src="image1.jpg" id="imgscreen" style="max-width:150px;max-height:150;">
+			</td>
+		</tr>
+		<tr>
+			<td>
+				Value 1: <input type="text" id="val1">
+		        <br><br>
+		        Value 2: <input type="text" id="val2">
+		        <br><br>
+		        <input type="button" value="Addition" onclick="calcfunc('+')">
+		        <input type="button" value="Subtraction" onclick="calcfunc('-')">
+		        <input type="button" value="Multiplication" onclick="calcfunc('*')">
+	 	        <input type="button" value="Division" onclick="calcfunc('/')">
+			</td>
+			<td style="text-align:center;">
+				Ouput<br><input type="text" id="op">
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<h2>Email Id Validation</h2>
+		        Email: <input type="text" id="emailtext" oninput="verification()">
+			</td>
+		</tr>
+	</table>
+</body>
+</html>
